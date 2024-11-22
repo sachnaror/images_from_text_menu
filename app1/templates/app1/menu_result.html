@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+{% block content %}
+<h1>Generated Dish Images</h1>
+<div class="row">
+    {% for dish in menu.dishes.all %}
+        <div class="col-md-4">
+            <h4>{{ dish.name }}</h4>
+            <p>{{ dish.description }}</p>
+            <img src="{{ dish.generated_image.url }}" class="img-fluid" />
+        </div>
+    {% endfor %}
+</div>
+{% endblock %}
