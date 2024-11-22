@@ -26,10 +26,20 @@ def generate_image_via_api(prompt):
         "n": 1,
         "size": "512x512",
     }
-    response = requests.post(api_url, json=data, headers=headers)
-    if response.status_code == 200:
-        return response.json()["data"][0]["url"]
+    try:
+        response = requests.post(api_url, json=data, headers=headers)
+        response.raise_for_status()  # Raises an exception for HTTP errors
+        if response.status_code == 200:
+            return response.json()["data"][0]["url"]
+        else:
+            print(f"API Error: {response.text}")
+    except requests.exceptions.RequestException as e:
+        print(f"Error during API request: {e}")
     return None
+
+from django.shortcuts import render, redirect
+from django.conf import settings
+from django.http import HttpResponse
 
 def upload_menu(request):
     if request.method == "POST":
@@ -37,22 +47,34 @@ def upload_menu(request):
         if form.is_valid():
             menu_image = form.cleaned_data["menu_image"]
             menu = Menu.objects.create(title="Uploaded Menu")
+
+            # Process the menu image
             dishes = process_menu_image(menu_image)
+
+            if not dishes:
+                return HttpResponse("No dishes found in the menu image. Please upload a valid menu image.")
 
             for dish_name, description in dishes:
                 image_url = generate_image_via_api(f"{dish_name}, {description}")
                 dish = Dish.objects.create(
                     menu=menu, name=dish_name, description=description
                 )
-                # Save image locally
+                # Save image locally if URL is received
                 if image_url:
-                    response = requests.get(image_url)
-                    image_path = f"media/dish_images/{dish_name}.png"
-                    with open(image_path, "wb") as f:
-                        f.write(response.content)
-                    dish.generated_image = image_path
-                    dish.save()
+                    try:
+                        response = requests.get(image_url)
+                        image_path = f"media/dish_images/{dish_name}.png"
+                        with open(image_path, "wb") as f:
+                            f.write(response.content)
+                        dish.generated_image = image_path
+                        dish.save()
+                    except Exception as e:
+                        print(f"Error saving image for {dish_name}: {e}")
+                        # Optionally, store a default or placeholder image if failed
+                        dish.generated_image = "media/dish_images/default.png"
+                        dish.save()
 
+            # Return results after processing
             return render(request, "menu_images_app/menu_result.html", {"menu": menu})
     else:
         form = MenuUploadForm()
