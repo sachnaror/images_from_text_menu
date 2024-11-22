@@ -1,4 +1,8 @@
+# app1/forms.py
 from django import forms
+from .models import MenuImage  # Import the correct model
 
-class MenuUploadForm(forms.Form):
-    menu_image = forms.ImageField()
+class MenuImageForm(forms.ModelForm):
+    class Meta:
+        model = MenuImage  # Your model name
+        fields = ['menu_image']  # Field(s) for the form
