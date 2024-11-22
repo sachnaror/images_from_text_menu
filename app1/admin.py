@@ -10,6 +10,7 @@ class MenuAdmin(admin.ModelAdmin):
 class DishAdmin(admin.ModelAdmin):
     list_display = ('name', 'menu', 'description')
 
+
 @admin.register(MenuImage)
 class MenuImageAdmin(admin.ModelAdmin):
-    list_display = ('id', 'uploaded_at')
+    list_display = ['id', 'menu_image', 'uploaded_at']
