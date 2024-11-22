@@ -19,7 +19,7 @@ You type up a menu description. We turn it into an image. Simple, right? But not
 
 ## 🖼️ Preview:
 
-![Dish Preview](https://via.placeholder.com/400x300.png?text=Delicious+Food+Here)
+![Dish Preview](https://github.com/sachnaror/images_from_text_menu/blob/main/images/dish_images/delicious-food.png?raw=true)
 
 > *"Wow, that looks better than my last Tinder profile pic!"*
 

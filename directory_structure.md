@@ -1,5 +1,6 @@
 ├── images_from_text_menu/
 │   ├── requirements.txt
+│   ├── README.md
 │   ├── manage.py
 │   ├── images_from_text_menu/
 │   │   ├── asgi.py
