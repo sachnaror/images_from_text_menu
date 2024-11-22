@@ -1,13 +1,42 @@
-{% extends 'base.html' %}
+{% extends 'app1/base.html' %}
+
 {% block content %}
-<h1>Generated Dish Images</h1>
+<h1>Menu Results</h1>
+
+
+<div id="loading" style="display:none;">Generating images, please wait...</div>
+<div id="menu-results" style="display:none;">
+    <!-- Menu results will be shown here -->
+</div>
+
+
+
 <div class="row">
-    {% for dish in menu.dishes.all %}
-        <div class="col-md-4">
-            <h4>{{ dish.name }}</h4>
-            <p>{{ dish.description }}</p>
-            <img src="{{ dish.generated_image.url }}" class="img-fluid" />
+    {% for dish in dishes %}
+    <div class="col-md-4">
+        <div class="card mb-3">
+            <img src="{{ dish.image_url }}" class="card-img-top" alt="{{ dish.name }}">
+            <div class="card-body">
+                <h5 class="card-title">{{ dish.name }}</h5>
+                <p class="card-text">{{ dish.description }}</p>
+            </div>
         </div>
+    </div>
     {% endfor %}
 </div>
 {% endblock %}
+
+
+
+<script>
+    // Show loading while waiting for results
+    document.getElementById('loading').style.display = 'block';
+    document.getElementById('menu-results').style.display = 'none';
+
+    // Hide loading and show results once they are ready
+    // This would be done dynamically in your view or after Ajax response
+    setTimeout(() => {
+        document.getElementById('loading').style.display = 'none';
+        document.getElementById('menu-results').style.display = 'block';
+    }, 5000);  // Adjust timing as per real delay
+</script>

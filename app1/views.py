@@ -7,11 +7,16 @@ from .models import Menu, Dish
 from .forms import MenuUploadForm
 
 def process_menu_image(menu_image):
-    # Perform OCR
-    image = Image.open(menu_image)
-    text = pytesseract.image_to_string(image)
-    dishes = parse_menu_text(text)  # Custom function to extract dishes from text
-    return dishes
+    try:
+        image = Image.open(menu_image)
+        text = pytesseract.image_to_string(image)
+        # Clean up the text if necessary (strip unnecessary spaces or unwanted characters)
+        dishes = parse_menu_text(text)  # Custom function to extract dishes from text
+        return dishes
+    except Exception as e:
+        # Add logging for better tracking of issues
+        print(f"Error processing menu image: {e}")
+        return []
 
 def generate_image_via_api(prompt):
     api_url = "https://api.openai.com/v1/images/generations"
