@@ -1,4 +1,6 @@
-# 🍽️ **Restaurant_dishes _images_from_text_menu** - From Words to Foodie Pics in Seconds!
+# 🍽️ **Restaurant_dishes _images_from_text_menu**
+
+# From Words to Foodie Pics in Seconds!
 
 Welcome to **MenuImages**, the only app where your food descriptions are transformed into delectable images by our AI. No more guessing what your "crispy, golden fries" look like – we’ve got it covered!
 
