@@ -23,13 +23,13 @@ You type up a menu description. We turn it into an image. Simple, right? But not
 
 ![Dish Preview](https://github.com/sachnaror/images_from_text_menu/blob/main/images/dish_images/delicious-food.png?raw=true)
 
-> *"Wow, that looks better than my last Tinder profile pic!"*
+
 
 ## ⚡ How to Get Started
 
 1. Clone this repo:
     ```bash
-    git clone https://github.com/yourusername/MenuImages.git
+    git clone https://github.com/sachnaror/restaurant_dishes_images_from_text_menu.git
     ```
 
 2. Install dependencies:
