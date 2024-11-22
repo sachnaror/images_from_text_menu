@@ -34,8 +34,8 @@ ROOT_URLCONF = 'images_from_text_menu.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [BASE_DIR / 'templates'],  # Make sure this includes the correct path
-        'APP_DIRS': True,  # Ensures app templates are also loaded
+        'DIRS': [BASE_DIR / 'templates'],  # Add global templates directory if necessary
+        'APP_DIRS': True,  # Make sure this is True
         'OPTIONS': {
             'context_processors': [
                 'django.template.context_processors.debug',
