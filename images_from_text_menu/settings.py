@@ -31,12 +31,11 @@ MIDDLEWARE = [
 
 ROOT_URLCONF = 'images_from_text_menu.urls'
 
-# TEMPLATES configuration
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],  # This is empty because 'APP_DIRS' will load templates from app folders
-        'APP_DIRS': True,  # Ensure this is True to search inside each app's 'templates' folder
+        'DIRS': [BASE_DIR / 'templates'],  # Make sure this includes the correct path
+        'APP_DIRS': True,  # Ensures app templates are also loaded
         'OPTIONS': {
             'context_processors': [
                 'django.template.context_processors.debug',
