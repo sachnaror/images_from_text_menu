@@ -4,83 +4,179 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{% block title %}My Django Project{% endblock %}</title>
-    <!-- Add any CSS or JS files here -->
 
-    /* General Layout */
-.container {
-    max-width: 900px;
+    <!-- Internal CSS for Styling -->
+    <style>
+        /* General Layout */
+        .container {
+            max-width: 900px;
+            margin: 0 auto; /* Ensures the container is centered horizontally */
+        }
+
+        .card {
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+
+        .card-body {
+            padding: 30px;
+        }
+
+        /* Button */
+        .btn-primary {
+            background-color: #007bff;
+            border-color: #007bff;
+            transition: background-color 0.3s ease;
+        }
+
+        .btn-primary:hover {
+            background-color: #0056b3;
+            border-color: #0056b3;
+        }
+
+        /* Loading Spinner */
+        .loading-spinner {
+            text-align: center;
+            margin-top: 30px;
+        }
+
+        .spinner-border {
+            width: 3rem;
+            height: 3rem;
+        }
+
+        /* Image Styling */
+        img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 10px;
+        }
+
+        /* Card Title */
+        .card-title {
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+
+        /* Centering the Header Title */
+        header {
+            text-align: center;
+            padding: 50px 0;
+            background-color: #f8f9fa;
+            margin-bottom: 30px;
+        }
+
+        header h1 {
+            font-size: 3rem;
+            font-weight: 700;
+            color: #343a40;
+            margin-bottom: 0;
+        }
+
+        header p {
+            font-size: 1.25rem;
+            color: #6c757d;
+            margin-top: 0;
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 20px;
+            background-color: #f8f9fa;
+        }
+
+        footer p {
+            font-size: 1rem;
+            color: #343a40;
+        }
+
+        /* Error Message */
+        .text-danger p {
+            margin: 0;
+        }
+
+        /* Responsive Layout */
+        @media (max-width: 768px) {
+            .container {
+                padding: 20px;
+            }
+
+            .card-body {
+                padding: 20px;
+            }
+
+            header h1 {
+                font-size: 2.5rem;
+            }
+
+            header p {
+                font-size: 1.1rem;
+            }
+        }
+
+        /* Centering the content inside the container */
+        .d-flex-center {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh; /* Full height of the viewport */
+        }
+
+        .form-upload {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        /* Styling the file input and related text */
+        .form-upload input[type="file"] {
+            font-size: 16px;  /* Ensures the file input has at least 16px font size */
+        }
+
+        .form-upload .custom-file-label {
+            font-size: 16px;  /* Adjusts the label for the file input */
+        }
+
+        .form-upload .form-group p {
+            font-size: 16px;  /* Makes the text below the file input (e.g., instructions) larger */
+            margin-top: 5px;
+        }
+
+        /* CSS for centering the button */
+.form-upload button[type="submit"] {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 50%;  /* Adjust width as per your preference */
 }
 
-.card {
-    border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-}
-
-.card-body {
-    padding: 30px;
-}
-
-/* Form */
-.form-upload .form-group {
-    margin-bottom: 20px;
-}
-
-/* Button */
-.btn-primary {
-    background-color: #007bff;
-    border-color: #007bff;
-    transition: background-color 0.3s ease;
-}
-
-.btn-primary:hover {
-    background-color: #0056b3;
-    border-color: #0056b3;
-}
-
-/* Loading Spinner */
-.loading-spinner {
-    text-align: center;
-    margin-top: 30px;
-}
-
-.spinner-border {
-    width: 3rem;
-    height: 3rem;
-}
-
-/* Image Styling */
-img {
-    max-width: 100%;
-    height: auto;
-    border-radius: 10px;
-}
-
-/* Card Title */
-.card-title {
-    font-size: 1.5rem;
+h2 {
+    display: block;
+    font-size: 1.5em;
     font-weight: bold;
+    text-align: center;  /* This centers the text horizontally */
+    margin-block-start: 0.83em;
+    margin-block-end: 0.83em;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
 }
 
-/* Error Message */
-.text-danger p {
-    margin: 0;
+/* Additional centering for the container */
+.container {
+    display: flex;
+    justify-content: center; /* Centers content horizontally */
+    align-items: center; /* Centers content vertically */
+    min-height: 45vh; /* Ensures the container takes at least the full viewport height */
 }
 
-/* Responsive Layout */
-@media (max-width: 768px) {
-    .container {
-        padding: 20px;
-    }
-
-    .card-body {
-        padding: 20px;
-    }
-}
+    </style>
 </head>
 <body>
+
     <header>
-        <h1>Welcome to My Django Project</h1>
-        <!-- Add navigation, logo, etc. -->
+        <h1>Restaurant Dishes - Images from Text Menu</h1>
+        <p>From Boring Menus to Foodie Pics in Seconds</p>
     </header>
 
     {% block content %}

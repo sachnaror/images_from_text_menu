@@ -1,80 +1,60 @@
-{% comment %} {% extends 'app1/base.html' %}
-
-{% block content %}
-<h1 class="mb-4">Upload Menu</h1>
-
-<!-- Form for uploading a menu image -->
-<form method="POST" enctype="multipart/form-data">
-    {% csrf_token %}
-
-    <div class="form-group">
-        <!-- Render the form field -->
-        <label for="id_menu_image">Upload Menu Image</label>
-        {{ form.menu_image }}
-
-        <!-- Display validation errors for the form field -->
-        {% if form.menu_image.errors %}
-        <div class="text-danger mt-2">
-            {% for error in form.menu_image.errors %}
-                <p>{{ error }}</p>
-            {% endfor %}
-        </div>
-        {% endif %}
-    </div>
-
-    <button type="submit" class="btn btn-primary mt-3">Upload</button>
-</form>
-
-<!-- Display generated dish image -->
-{% if dish_image_url %}
-<div class="mt-5">
-    <h2>Generated Dish Image</h2>
-    <img src="{{ dish_image_url }}" alt="Dish Image" class="img-fluid">
-</div>
-{% endif %}
-
-{% endblock %} {% endcomment %}
-
 {% extends 'app1/base.html' %}
 
 {% block content %}
-    <div class="container">
-        <div class="row justify-content-center mt-5">
+    <div class="container d-flex justify-content-center align-items-center min-vh-100">
+        <div class="row justify-content-center w-100">
             <div class="col-md-8">
-                <h1 class="text-center mb-4">Upload Your Menu</h1>
                 <div class="card shadow-lg">
                     <div class="card-body">
-                        <h5 class="card-title">Take a picture of your menu</h5>
+                        <h2 class="text-center mb-4">Upload Your Menu</h2>
+
+                        <!-- Upload Form -->
                         <form method="POST" enctype="multipart/form-data" class="form-upload">
                             {% csrf_token %}
-                            <div class="form-group">
-                                {{ form.as_p }}
-                                <button type="submit" class="btn btn-primary w-100 mt-4">Upload Menu Image</button>
+
+                            <!-- File Upload Section -->
+                            <div class="mb-4 text-center">
+                                <label for="menu_image" class="file-upload-label">
+                                    {% comment %} <span class="file-upload-text">Click to Upload Menu Image</span> {% endcomment %}
+                                    <br>
+                                    <small class="text-muted">JPG, PNG, or PDF (max 5MB)</small>
+                                </label>
+                                <input type="file" name="menu_image" id="menu_image" accept="image/*,application/pdf" class="form-control-file" required>
                             </div>
+
+                            <!-- Submit Button -->
+                            <br>
+
+                            <button type="submit" class="btn btn-primary w-100 mt-4">Upload Menu Image</button>
+
+                            <!-- Error Display -->
                             {% if form.menu_image.errors %}
-                                <div class="text-danger mt-2">
+                                <div class="text-danger mt-3">
                                     {% for error in form.menu_image.errors %}
                                         <p>{{ error }}</p>
                                     {% endfor %}
                                 </div>
                             {% endif %}
                         </form>
+
+                        <!-- Display Generated Dish Image -->
                         {% if dish_image_url %}
                             <div class="mt-4 text-center">
                                 <h3>Generated Dish Images</h3>
-                                <img src="{{ dish_image_url }}" alt="Dish Image" class="img-fluid">
+                                <img src="{{ dish_image_url }}" alt="Dish Image" class="img-fluid rounded">
                             </div>
                         {% endif %}
                     </div>
                 </div>
             </div>
         </div>
-        <!-- Loading Animation -->
+
+        <!-- Loading Spinner (Visible only when active) -->
         <div id="loading" class="loading-spinner" style="display:none;">
             <div class="spinner-border text-primary" role="status">
                 <span class="sr-only">Loading...</span>
             </div>
-            <p>Generating your visual menu...</p>
+            <p class="text-center">Generating your visual menu...</p>
         </div>
     </div>
 {% endblock %}
