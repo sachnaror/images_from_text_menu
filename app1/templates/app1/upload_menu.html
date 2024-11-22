@@ -1,27 +1,36 @@
 {% extends 'app1/base.html' %}
 
 {% block content %}
-<h1>Upload Menu</h1>
+<h1 class="mb-4">Upload Menu</h1>
 
-
+<!-- Form for uploading a menu image -->
 <form method="POST" enctype="multipart/form-data">
     {% csrf_token %}
-    {{ form.as_p }}
-    <button type="submit" class="btn btn-primary">Upload</button>
 
-    {% if form.menu_image.errors %}
-    <div class="text-danger">
-        {% for error in form.menu_image.errors %}
-            <p>{{ error }}</p>
-        {% endfor %}
+    <div class="form-group">
+        <!-- Render the form field -->
+        <label for="id_menu_image">Upload Menu Image</label>
+        {{ form.menu_image }}
+
+        <!-- Display validation errors for the form field -->
+        {% if form.menu_image.errors %}
+        <div class="text-danger mt-2">
+            {% for error in form.menu_image.errors %}
+                <p>{{ error }}</p>
+            {% endfor %}
+        </div>
+        {% endif %}
     </div>
-{% endif %}
 
+    <button type="submit" class="btn btn-primary mt-3">Upload</button>
 </form>
 
+<!-- Display generated dish image -->
 {% if dish_image_url %}
-<h2>Generated Dish Image</h2>
-<img src="{{ dish_image_url }}" alt="Dish Image">
+<div class="mt-5">
+    <h2>Generated Dish Image</h2>
+    <img src="{{ dish_image_url }}" alt="Dish Image" class="img-fluid">
+</div>
 {% endif %}
 
 {% endblock %}
