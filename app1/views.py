@@ -7,6 +7,7 @@ from .forms import MenuUploadForm
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
 
+
 def process_menu_image(menu_image):
     try:
         image = Image.open(menu_image)
@@ -74,3 +75,9 @@ def upload_menu(request):
         form = MenuUploadForm()
 
     return render(request, "menu_images_app/upload_menu.html", {"form": form})
+
+
+def menu_result(request):
+    # Get dishes from the database
+    dishes = Dish.objects.all()  # You can filter this if necessary
+    return render(request, 'menu_images_app/menu_result.html', {'dishes': dishes})
