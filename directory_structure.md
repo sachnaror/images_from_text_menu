@@ -1,4 +1,5 @@
 ├── images_from_text_menu/
+│   ├── requirements.txt
 │   ├── manage.py
 │   ├── images_from_text_menu/
 │   │   ├── asgi.py
@@ -16,12 +17,12 @@
 │   │   ├── tests.py
 │   │   ├── urls.py
 │   │   └── views.py
-│   │   ├── template/
-│   │   │   ├── app1/
-│   │   │   │   ├── upload_menu.html
-│   │   │   │   ├── base.html
-│   │   │   │   └── menu_result.html
 │   │   ├── static/
 │   │   │   ├── css
 │   │   │   ├── images
 │   │   │   └── js
+│   │   ├── templates/
+│   │   │   ├── app1/
+│   │   │   │   ├── upload_menu.html
+│   │   │   │   ├── base.html
+│   │   │   │   └── menu_result.html
