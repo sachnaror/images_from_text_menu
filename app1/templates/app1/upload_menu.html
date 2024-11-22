@@ -21,4 +21,11 @@
 
     <button type="submit" class="btn btn-primary">Upload</button>
 </form>
+
+{% if dish_image_url %}
+<h2>Generated Dish Image</h2>
+<img src="{{ dish_image_url }}" alt="Dish Image">
+{% endif %}
 {% endblock %}
+
+

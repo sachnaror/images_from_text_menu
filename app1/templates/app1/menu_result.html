@@ -24,6 +24,15 @@
     </div>
 </div>
 
+<h2>Generated Dish Images:</h2>
+
+<!-- Example of displaying multiple generated dish images -->
+{% for dish_image in dish_images %}
+  <div class="dish">
+    <img src="{{ dish_image.url }}" alt="Dish Image">
+  </div>
+{% endfor %}
+
 {% endblock %}
 
 <script>
@@ -41,3 +50,5 @@
         document.getElementById('menu-results').style.display = 'block';
     }
 </script>
+
+
